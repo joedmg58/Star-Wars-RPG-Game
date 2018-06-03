@@ -1,0 +1,10 @@
+
+.card {
+    max-width: 28rem;
+    border: 2px solid gray;
+}
+
+.card img {
+    width: 100%;
+}
+
