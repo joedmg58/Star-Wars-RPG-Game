@@ -28,6 +28,8 @@ var characters = [ new Character( 'Obi-Wan Kenobi', 120, 6, 4, 'assets/images/ob
                    new Character( 'Darth Maul', 180, 12, 6, 'assets/images/darth-maul.png', 'sith')
                  ]; //array of characters
 
+             
+
 function showInitCards() {
     for (var i = 0; i < characters.length; i++ ) {
 
@@ -44,6 +46,9 @@ function showInitCards() {
                          col.append( card );
         }
 
+        card.attr('value', i);
+
+
         var cardBody = $('<div>').addClass( 'card-body' );
         card.append( cardBody );
 
@@ -57,16 +62,33 @@ function showInitCards() {
             width: "200px",
             height: "100px"
         } ); 
-        //cPicture.attr( 'alt', characters[i].name );
         cardBody.append( cPicture );
 
         var attackPower = $('<p>').addClass( 'card-text' ).html( characters[i].healthPoints );
         cardBody.append( attackPower );
         
-        $('.your-character').append( col );
+        $('.pick-character').append( col );
         console.log( characters[i].name );
+        
     }
-}                 
+
+    //$('.pick-character').append( $('<p>').html('Your Character').addClass('card-text') );
+    $('.card').click( cardClick( $('.card') ) );
+}     
+
+function moveCard( card, destination ) {
+    $( destination ).append( card );
+}
+
+
+
+function cardClick( card ) {
+    return function(){
+        console.log( 'Card clicked: ' + card.val() );
+    }
+}    
+
+
 
 var gameover = false;
 var wins = 0;
